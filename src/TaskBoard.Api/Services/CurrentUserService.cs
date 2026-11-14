@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using TaskBoard.Application.Common.Exceptions;
 using TaskBoard.Application.Common.Interfaces;
 
 namespace TaskBoard.Api.Services;
@@ -12,8 +14,8 @@ public class CurrentUserService : ICurrentUserService
     {
         get
         {
-            var header = _accessor.HttpContext?.Request.Headers["X-User-ID"].FirstOrDefault();
-            return int.TryParse(header, out var id) ? id : 1;
+            var value = _accessor.HttpContext?.User.FindFirstValue("sub");
+            return int.TryParse(value, out var id) ? id : throw new UnauthorizedException();
         }
     }
 }

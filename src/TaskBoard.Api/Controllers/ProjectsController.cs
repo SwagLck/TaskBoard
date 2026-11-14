@@ -1,12 +1,13 @@
-using System.Reflection.Metadata.Ecma335;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskBoard.Application.Projects;
 using TaskBoard.Application.Projects.Dtos;
-using TaskBoard.Domain.Entities;
+
 
 namespace TaskBoard.Api.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/projects")]
 public class ProjectsController : ControllerBase
 {
