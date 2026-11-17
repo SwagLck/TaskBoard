@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { createProject, deleteProject, getProjects } from '../api/projects';
 import { getErrorMessage } from '../api/client';
 import type { Project } from '../types';
+import { Link } from 'react-router-dom';
 
 export default function ProjectsPage() {
   const { user, logout } = useAuth();
@@ -77,7 +78,7 @@ export default function ProjectsPage() {
             }}
           >
             <div>
-              <strong>{p.name}</strong>
+              <strong><Link to={`/projects/${p.id}`}>{p.name}</Link></strong>
               <div>Užduočių: {p.taksCount}</div>
             </div>
             <button onClick={() => handleDelete(p.id)}>Ištrinti</button>
